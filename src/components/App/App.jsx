@@ -30,8 +30,7 @@ function App () {
   }
 
   // Function to add a new creature to the database
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (newCreatureName, newCreatureOrigin) => {
 
     axios({
       method: 'POST',
@@ -44,9 +43,9 @@ function App () {
       .then( (response) => {
         console.log('Response:', response);
         fetchCreatures();
-        //Clear Inputs & State
-        setNewCreatureName('');
-        setNewCreatureOrigin('')
+        // //Clear Inputs & State
+        // setNewCreatureName('');
+        // setNewCreatureOrigin('')
       })
       .catch(function (error) {
         console.log('Error on add:', error);
@@ -62,8 +61,8 @@ function App () {
   return (
     <div className="App">
       
-      <Form />
-      <CreatureList creatureListProp={creatureList} />  
+      <Form addCreatureFunctionProp= {handleSubmit} />
+      <CreatureList creatureListProp={creatureList} /> 
      
     </div>
   );

@@ -1,6 +1,6 @@
 import {useState} from 'react'; // hook provided to us by React
 
-function Form() {
+function Form({addCreatureFunctionProp}) {
 
     const [newCreatureName, setNewCreatureName] = useState('');
     const [newCreatureOrigin, setNewCreatureOrigin] = useState('');
@@ -8,6 +8,9 @@ function Form() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('submit!');
+        addCreatureFunctionProp(newCreatureName, newCreatureOrigin);
+        setNewCreatureName('');
+        setNewCreatureOrigin('');
     };
 
     return (
