@@ -1,12 +1,13 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';    // object destructering: to pull only specific parts from React
 import axios from 'axios';
+import CreatureList from '../CreatureList/CreatureList';
+import Form from '../Form/Form';
 
 import './App.css';
 
 function App () {
  
-  const [creatureList, setCreatureList] = useState([]);
-  const [newCreatureName, setNewCreatureName] = useState('');
+  const [creatureList, setCreatureList] = useState([]); // useState is a hook provided to us by React
   const [newCreatureOrigin, setNewCreatureOrigin] = useState('');
 
   // Function to get the creatures from the server/database
@@ -60,25 +61,10 @@ function App () {
   
   return (
     <div className="App">
-      <h2>Add Creature</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Name:</label>
-        <input 
-          onChange={ (event) => setNewCreatureName(event.target.value) } 
-          value={newCreatureName}
-          />
-        <label>Origin:</label>
-        <input 
-          onChange={ (event) => setNewCreatureOrigin(event.target.value) } 
-          value={newCreatureOrigin}/>
-        <button type="submit">Add New Creature</button>
-      </form>
-      <h2>All Creatures</h2>
-      <ul>
-        {creatureList.map(creature => 
-         (<li key={creature.id}>{creature.name} is from {creature.origin}</li>)
-        )}
-      </ul>
+      
+      <Form />
+      <CreatureList creatureListProp={creatureList} />  
+     
     </div>
   );
 
